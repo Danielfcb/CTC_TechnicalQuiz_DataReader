@@ -40,11 +40,39 @@ namespace CTCDatabaseUpdater
                 validRecords = reader.ReadFile(dataFilesPath + "/" + file);
             }
 
-            DAL dal = new DAL();
-            // After validation I can insert the data into the database using my data access layer
+            List<DataFileModel> managerEmployees = new List<DataFileModel>();
+            List<DataFileModel> supervisorEmployees = new List<DataFileModel>();
+            List<DataFileModel> workerEmployees = new List<DataFileModel>();
 
-            dal.InsertIntoEmployeesTable(validRecords);
-            
+
+            foreach(var employee in validRecords)
+            {
+                if(employee.Role == "Manager")
+                {
+                    managerEmployees.Add(employee);
+                }
+                else if (employee.Role == "Supervisor")
+                {
+                    supervisorEmployees.Add(employee);
+                }
+                else if(employee.Role == "Worker")
+                {
+                    workerEmployees.Add(employee);
+                }
+            }
+            DAL dal = new DAL();
+
+            dal.InsertIntoEmployeesTable(managerEmployees);
+            dal.InsertIntoEmployeesTable(supervisorEmployees);
+            dal.InsertIntoEmployeesTable(workerEmployees);
+
+            //Setting the status of employees not mentioned in the data file to 0
+            List<string> employeeNumbersInDatabase = dal.GetAllEmployeeNumbers();
+            List<string> newEmployeeNumberList = validRecords.Select(r => r.Employee_num).ToList();
+
+            List<string> InactiveEmployeeNumbers = employeeNumbersInDatabase.Where(dbEmployeeNumber => !newEmployeeNumberList.Contains(dbEmployeeNumber)).ToList();
+
+
         }
     }
 }

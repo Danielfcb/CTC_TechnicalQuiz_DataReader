@@ -18,6 +18,7 @@ namespace CTCDatabaseUpdater.DataAccessLayer
         public Employee()
         {
             this.Bookings = new HashSet<Booking>();
+            this.Employees1 = new HashSet<Employee>();
         }
     
         public int employee_id { get; set; }
@@ -28,12 +29,15 @@ namespace CTCDatabaseUpdater.DataAccessLayer
         public Nullable<int> roletype_id { get; set; }
         public Nullable<int> department_id { get; set; }
         public Nullable<int> crew_id { get; set; }
-        public string supervisor_id { get; set; }
+        public Nullable<int> supervisor_id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Bookings { get; set; }
         public virtual Crew Crew { get; set; }
         public virtual Department Department { get; set; }
         public virtual RoleType RoleType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Employee> Employees1 { get; set; }
+        public virtual Employee Employee1 { get; set; }
     }
 }

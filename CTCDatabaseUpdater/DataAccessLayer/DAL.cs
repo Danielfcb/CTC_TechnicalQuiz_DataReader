@@ -10,11 +10,11 @@ namespace CTCDatabaseUpdater.DataAccessLayer
 {
     public class DAL
     {
-        private MasterRosterEntities _db;
+        private MasterRosterContext _db;
 
         public DAL()
         {
-            _db = new MasterRosterEntities();
+            _db = new MasterRosterContext();
         }
         public List<Crew> GetAllDisctinctCrews()
         {
@@ -24,6 +24,11 @@ namespace CTCDatabaseUpdater.DataAccessLayer
         public List<Department> GetAllDistinctDepartments()
         {
             return _db.Departments.Distinct().ToList();
+        }
+
+        public bool DoesEmployeeNumberExist(string employeeNumber)
+        {
+            return (_db.Employees.Where(e => e.employee_num == employeeNumber).Count() > 0);
         }
 
         public int? GetDepartmentIDByName(string departmentName)
@@ -42,6 +47,7 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             {
                 foreach (var record in records)
                 {
+                    // here I need to check if the record exists in the database already or not
                     Employee employee = new Employee()
                     {
                         name = record.employee_name,
@@ -51,7 +57,7 @@ namespace CTCDatabaseUpdater.DataAccessLayer
                         seniority_date = Convert.ToDateTime(record.SeniorityDate),
                         roletype_id = GetAllDistinctRollTypes().Where(r => r.roletype_name == record.Role).SingleOrDefault().roletype_id,
                         crew_id = GetAllDisctinctCrews().Where(c => c.crew_code == record.Crew_Code).SingleOrDefault().crew_id,
-                        supervisor_id = record.Supervisor_num
+                        supervisor_id = GetLastEmployeeIdForEmployeeNumber(record.Supervisor_num)
                     };
 
                     if (employee.roletype_id == managerRoleTypeId)
@@ -85,7 +91,7 @@ namespace CTCDatabaseUpdater.DataAccessLayer
                 }
                 _db.SaveChanges();
 
-                _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NULL) BEGIN ALTER TABLE Employees With Nocheck Add CONSTRAINT [FK_Employees_Supervisors] foreign key(supervisor_id) references[Employees](employee_num) END");
+                _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NULL) BEGIN ALTER TABLE Employees With Nocheck Add CONSTRAINT [FK_Employees_Supervisors] foreign key(supervisor_id) references[Employees](employee_id) END");
                 
             }
             if(nonManagerEmployees.Count > 0 )
@@ -102,6 +108,33 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return result;
         }
 
+        public List<string> GetAllEmployeeNumbers()
+        {
+            return _db.Employees.Select(e => e.employee_num).ToList();
+        }
+
+        public void SetStatusToInactive(string employeeNumber)
+        {
+            _db.Database.ExecuteSqlCommand("Update Employees set Status = 0 where employee_num='" + employeeNumber + "'");
+
+        }
+
+        public void RemoveEmployeeFromDatabase(string employeeNumber)
+        {
+            _db.Database.ExecuteSqlCommand("delete from Employees where employee_num='" + employeeNumber + "'");
+        }
+
+        public int? GetLastEmployeeIdForEmployeeNumber(string employeeNumber)
+        {
+            if (!string.IsNullOrEmpty(employeeNumber))
+            {
+                return _db.Employees.Where(e => e.employee_num == employeeNumber).SingleOrDefault().employee_id;
+            }
+            else
+            {
+                return null;
+            }
+        }
         public List<RoleType> GetAllDistinctRollTypes()
         {
             return _db.RoleTypes.Distinct().ToList();

@@ -56,10 +56,18 @@ namespace CTCDatabaseUpdater
             line = file.ReadLine();
 
             while((line = file.ReadLine()) != null)
-            {               
-                if (_dataValidator.IsRecordValid(line))
+            {
+                bool isDuplicated;            
+                if (_dataValidator.IsRecordValid(line, out isDuplicated))
                 {
+                    
                     string[] lineElements = line.Split(',');
+
+                    if (isDuplicated)
+                    {
+                        // Removing is not a good idea
+                        //_dal.RemoveEmployeeFromDatabase(lineElements[4]);
+                    }
 
                     DataFileModel dataModel = new DataFileModel()
                     {

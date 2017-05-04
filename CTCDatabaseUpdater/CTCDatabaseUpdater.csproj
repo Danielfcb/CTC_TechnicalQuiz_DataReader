@@ -56,38 +56,38 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccessLayer\Booking.cs">
-      <DependentUpon>MasterRosterEntity.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLayer\BookingType.cs">
-      <DependentUpon>MasterRosterEntity.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLayer\Crew.cs">
-      <DependentUpon>MasterRosterEntity.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLayer\DAL.cs" />
     <Compile Include="DataAccessLayer\Department.cs">
-      <DependentUpon>MasterRosterEntity.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLayer\Employee.cs">
-      <DependentUpon>MasterRosterEntity.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLayer\MasterRosterEntity.Context.cs">
+    <Compile Include="DataAccessLayer\MasterRosterContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MasterRosterEntity.Context.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLayer\MasterRosterEntity.cs">
+    <Compile Include="DataAccessLayer\MasterRosterContext.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MasterRosterEntity.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccessLayer\MasterRosterEntity.Designer.cs">
+    <Compile Include="DataAccessLayer\MasterRosterContext.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MasterRosterEntity.edmx</DependentUpon>
+      <DependentUpon>MasterRosterContext.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataAccessLayer\RoleType.cs">
-      <DependentUpon>MasterRosterEntity.tt</DependentUpon>
+      <DependentUpon>MasterRosterContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Utilties\DataReader.cs" />
     <Compile Include="Utilties\DataValidator.cs" />
@@ -98,12 +98,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DataAccessLayer\MasterRosterEntity.edmx">
+    <EntityDeploy Include="DataAccessLayer\MasterRosterContext.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MasterRosterEntity.Designer.cs</LastGenOutput>
+      <LastGenOutput>MasterRosterContext.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DataAccessLayer\MasterRosterEntity.edmx.diagram">
-      <DependentUpon>MasterRosterEntity.edmx</DependentUpon>
+    <None Include="DataAccessLayer\MasterRosterContext.edmx.diagram">
+      <DependentUpon>MasterRosterContext.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -111,15 +111,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataAccessLayer\MasterRosterEntity.Context.tt">
+    <Content Include="DataAccessLayer\MasterRosterContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MasterRosterEntity.edmx</DependentUpon>
-      <LastGenOutput>MasterRosterEntity.Context.cs</LastGenOutput>
+      <DependentUpon>MasterRosterContext.edmx</DependentUpon>
+      <LastGenOutput>MasterRosterContext.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="DataAccessLayer\MasterRosterEntity.tt">
+    <Content Include="DataAccessLayer\MasterRosterContext.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MasterRosterEntity.edmx</DependentUpon>
-      <LastGenOutput>MasterRosterEntity.cs</LastGenOutput>
+      <DependentUpon>MasterRosterContext.edmx</DependentUpon>
+      <LastGenOutput>MasterRosterContext.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

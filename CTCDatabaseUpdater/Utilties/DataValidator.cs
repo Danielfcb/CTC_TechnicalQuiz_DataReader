@@ -17,26 +17,32 @@ namespace CTCDatabaseUpdater
         {
             _dal = new DAL();
         }
-        public bool IsRecordValid(string record)
+        public bool IsRecordValid(string record, out bool isDuplicated)
         {
             bool result = true;
+            
             string[] lineElements = record.Split(',');
 
+            isDuplicated = _dal.DoesEmployeeNumberExist(lineElements[4]);
 
-
-            //validate crew_code
-            
-
-
-            //DepartmentName = lineElements[0],
-            //Crew_Code = _allCrews.Where(c => c.crew_code == lineElements[0]).SingleOrDefault().crew_code, 
-            //employee_name = lineElements[2],
-            //Status = (Statuses)Enum.Parse(typeof(Statuses), lineElements[3]),
-            //Employee_num = lineElements[4],
-            //Role = (Roles)Enum.Parse(typeof(Roles), lineElements[5]),
-            //SeniorityDate = lineElements[6],
-            //Supervisor_name = lineElements[7],
-            //Supervisor_num = lineElements[8]
+            result = isDepartmentNameValid(lineElements[0]);
+            if (result)
+                result = isCrewCodeValid(lineElements[1]);
+            if (result)
+                result = isEmployeeNameValid(lineElements[2]);
+            if (result)
+                result = isStatusValid(lineElements[3]);
+            if (result)
+                result = isEmployeeNumberValid(lineElements[4]);
+            if (result)
+                result = isRoleTypeValid(lineElements[5]);
+            if (result)
+                result = isSeniorityDateValid(lineElements[6]);
+            if (result)
+                result = isSupervisorNameValid(lineElements[7], lineElements[5]);
+            if (result)
+                result = isSupervisorNumberValid(lineElements[8], lineElements[5]);
+            // check that someone shoudn't report to themselves   
 
             return result;
         }
@@ -149,18 +155,18 @@ namespace CTCDatabaseUpdater
 
         /// <summary>
         /// Other than Managers, rest of the employees must have a supervisor assigned
-        /// supervisor Id mu
-        /// 
+        /// supervisor Id (employee_id) must be avialble in database already or it should be 
+        /// in the data file ready to inserted into the database
         /// </summary>
-        /// <param name="supervisorId"></param>
+        /// <param name="supervisorNumber"></param>
         /// <param name="roleType"></param>
         /// <returns></returns>
-        private bool isSupervisorIdValid(string supervisorId, string roleType)
+        private bool isSupervisorNumberValid(string supervisorNumber, string roleType)
         {
             bool result = true;
 
             // Other than managers, rest of the employees must have a supervisor assigned
-            if (roleType != "Manager" && string.IsNullOrEmpty(supervisorId))
+            if (roleType != "Manager" && string.IsNullOrEmpty(supervisorNumber))
             {
                 result = false;
             }

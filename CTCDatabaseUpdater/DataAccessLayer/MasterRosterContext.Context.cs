@@ -13,10 +13,10 @@ namespace CTCDatabaseUpdater.DataAccessLayer
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class MasterRosterEntities : DbContext
+    public partial class MasterRosterContext : DbContext
     {
-        public MasterRosterEntities()
-            : base("name=MasterRosterEntities")
+        public MasterRosterContext()
+            : base("name=MasterRosterContext")
         {
         }
     

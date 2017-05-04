@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MasterRosterContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="MasterRosterEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Bookings">
           <Key>
             <PropertyRef Name="booking_id" />
@@ -50,7 +50,7 @@
           <Property Name="roletype_id" Type="int" />
           <Property Name="department_id" Type="int" />
           <Property Name="crew_id" Type="int" />
-          <Property Name="supervisor_id" Type="varchar" MaxLength="10" />
+          <Property Name="supervisor_id" Type="int" />
         </EntityType>
         <EntityType Name="RoleTypes">
           <Key>
@@ -121,9 +121,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="FK_Employees_Supervisors" />-->
+        <Association Name="FK_Employees_Supervisors">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="supervisor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RoleTypes_ReportsTo">
           <End Role="RoleTypes" Type="Self.RoleTypes" Multiplicity="0..1" />
           <End Role="RoleTypes1" Type="Self.RoleTypes" Multiplicity="*" />
@@ -136,7 +145,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MasterRosterContextStoreContainer">
+        <EntityContainer Name="MasterRosterEntitiesStoreContainer">
           <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BookingTypes" EntityType="Self.BookingTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Crews" EntityType="Self.Crews" Schema="dbo" store:Type="Tables" />
@@ -163,6 +172,10 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             <End Role="RoleTypes" EntitySet="RoleTypes" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employees_Supervisors" Association="Self.FK_Employees_Supervisors">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_RoleTypes_ReportsTo" Association="Self.FK_RoleTypes_ReportsTo">
             <End Role="RoleTypes" EntitySet="RoleTypes" />
             <End Role="RoleTypes1" EntitySet="RoleTypes" />
@@ -172,7 +185,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MasterRosterContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="MasterRosterEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="booking_id" />
@@ -223,11 +236,13 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
           <Property Name="roletype_id" Type="Int32" />
           <Property Name="department_id" Type="Int32" />
           <Property Name="crew_id" Type="Int32" />
-          <Property Name="supervisor_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="supervisor_id" Type="Int32" />
           <NavigationProperty Name="Bookings" Relationship="Self.FK_Bookings_EmployeeId" FromRole="Employees" ToRole="Bookings" />
           <NavigationProperty Name="Crew" Relationship="Self.FK_Employees_Crews" FromRole="Employees" ToRole="Crews" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Employees_Departments" FromRole="Employees" ToRole="Departments" />
           <NavigationProperty Name="RoleType" Relationship="Self.FK_Employees_RoleTypes" FromRole="Employees" ToRole="RoleTypes" />
+          <NavigationProperty Name="Employees1" Relationship="Self.FK_Employees_Supervisors" FromRole="Employees" ToRole="Employees1" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_Employees_Supervisors" FromRole="Employees1" ToRole="Employees" />
         </EntityType>
         <EntityType Name="RoleType">
           <Key>
@@ -301,6 +316,18 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Employees_Supervisors">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Employees1" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="employee_id" />
+            </Principal>
+            <Dependent Role="Employees1">
+              <PropertyRef Name="supervisor_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_RoleTypes_ReportsTo">
           <End Role="RoleTypes" Type="Self.RoleType" Multiplicity="0..1" />
           <End Role="RoleTypes1" Type="Self.RoleType" Multiplicity="*" />
@@ -313,7 +340,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MasterRosterEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MasterRosterContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Bookings" EntityType="Self.Booking" />
           <EntitySet Name="BookingTypes" EntityType="Self.BookingType" />
           <EntitySet Name="Crews" EntityType="Self.Crew" />
@@ -340,6 +367,10 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             <End Role="RoleTypes" EntitySet="RoleTypes" />
             <End Role="Employees" EntitySet="Employees" />
           </AssociationSet>
+          <AssociationSet Name="FK_Employees_Supervisors" Association="Self.FK_Employees_Supervisors">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Employees1" EntitySet="Employees" />
+          </AssociationSet>
           <AssociationSet Name="FK_RoleTypes_ReportsTo" Association="Self.FK_RoleTypes_ReportsTo">
             <End Role="RoleTypes" EntitySet="RoleTypes" />
             <End Role="RoleTypes1" EntitySet="RoleTypes" />
@@ -350,9 +381,9 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MasterRosterContextStoreContainer" CdmEntityContainer="MasterRosterEntities">
+        <EntityContainerMapping StorageEntityContainer="MasterRosterEntitiesStoreContainer" CdmEntityContainer="MasterRosterContext">
           <EntitySetMapping Name="Bookings">
-            <EntityTypeMapping TypeName="MasterRosterContext.Booking">
+            <EntityTypeMapping TypeName="MasterRosterEntities.Booking">
               <MappingFragment StoreEntitySet="Bookings">
                 <ScalarProperty Name="booking_id" ColumnName="booking_id" />
                 <ScalarProperty Name="employee_id" ColumnName="employee_id" />
@@ -365,7 +396,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="BookingTypes">
-            <EntityTypeMapping TypeName="MasterRosterContext.BookingType">
+            <EntityTypeMapping TypeName="MasterRosterEntities.BookingType">
               <MappingFragment StoreEntitySet="BookingTypes">
                 <ScalarProperty Name="booking_type_code" ColumnName="booking_type_code" />
                 <ScalarProperty Name="booking_type_name" ColumnName="booking_type_name" />
@@ -373,7 +404,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Crews">
-            <EntityTypeMapping TypeName="MasterRosterContext.Crew">
+            <EntityTypeMapping TypeName="MasterRosterEntities.Crew">
               <MappingFragment StoreEntitySet="Crews">
                 <ScalarProperty Name="crew_id" ColumnName="crew_id" />
                 <ScalarProperty Name="crew_code" ColumnName="crew_code" />
@@ -381,7 +412,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="MasterRosterContext.Department">
+            <EntityTypeMapping TypeName="MasterRosterEntities.Department">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="department_id" ColumnName="department_id" />
                 <ScalarProperty Name="department_name" ColumnName="department_name" />
@@ -389,7 +420,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Employees">
-            <EntityTypeMapping TypeName="MasterRosterContext.Employee">
+            <EntityTypeMapping TypeName="MasterRosterEntities.Employee">
               <MappingFragment StoreEntitySet="Employees">
                 <ScalarProperty Name="employee_id" ColumnName="employee_id" />
                 <ScalarProperty Name="employee_num" ColumnName="employee_num" />
@@ -404,7 +435,7 @@ warning 6035: The relationship 'FK_Employees_Supervisors' has columns that are n
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoleTypes">
-            <EntityTypeMapping TypeName="MasterRosterContext.RoleType">
+            <EntityTypeMapping TypeName="MasterRosterEntities.RoleType">
               <MappingFragment StoreEntitySet="RoleTypes">
                 <ScalarProperty Name="roletype_id" ColumnName="roletype_id" />
                 <ScalarProperty Name="roletype_name" ColumnName="roletype_name" />
