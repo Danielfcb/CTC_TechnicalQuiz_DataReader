@@ -89,9 +89,9 @@
     <Compile Include="DataAccessLayer\RoleType.cs">
       <DependentUpon>MasterRosterEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataReader.cs" />
-    <Compile Include="DataValidator.cs" />
-    <Compile Include="iDataReader.cs" />
+    <Compile Include="Utilties\DataReader.cs" />
+    <Compile Include="Utilties\DataValidator.cs" />
+    <Compile Include="Utilties\iDataReader.cs" />
     <Compile Include="Models\DataFileModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

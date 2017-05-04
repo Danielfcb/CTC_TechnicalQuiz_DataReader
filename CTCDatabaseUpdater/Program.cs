@@ -30,13 +30,20 @@ namespace CTCDatabaseUpdater
             }
 
             DataReader reader = new DataReader(dataFilesPath);
-            List<string> dataFiles = reader.GetFileNames();
-            List<DataFileModel> validRecords =  reader.ReadFile(dataFilesPath + "/" + dataFiles[0]);
+            List<string> dataFiles = reader.GetValidFileNames(ConfigurationManager.AppSettings["ValidDataPrefixes"],
+                                                              ConfigurationManager.AppSettings["DataFileExtension"]);
+
+
+            List<DataFileModel> validRecords = new List<DataFileModel>();
+            foreach (var file in dataFiles)
+            {
+                validRecords = reader.ReadFile(dataFilesPath + "/" + file);
+            }
 
             DAL dal = new DAL();
             // After validation I can insert the data into the database using my data access layer
 
-            dal.InsertIntoDatabase(validRecords);
+            dal.InsertIntoEmployeesTable(validRecords);
             
         }
     }

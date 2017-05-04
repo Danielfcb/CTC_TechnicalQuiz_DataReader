@@ -15,20 +15,6 @@ namespace CTCDatabaseUpdater.Models
             Inactive
         }
 
-        //public enum Roles
-        //{
-        //    Manager,
-        //    Supervisor,
-        //    Worker,
-
-        //}
-
-        //public enum CrewCodes
-        //{
-        //    DAY,
-        //    AFT,
-        //    EVN
-        //}
         public string DepartmentName { get; set; }
         public string Crew_Code { get; set; }
         public string employee_name { get; set; }

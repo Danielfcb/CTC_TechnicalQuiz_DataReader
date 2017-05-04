@@ -10,8 +10,12 @@ namespace CTCDatabaseUpdater.DataAccessLayer
 {
     public class DAL
     {
-        MasterRosterEntities _db = new MasterRosterEntities();
+        private MasterRosterEntities _db;
 
+        public DAL()
+        {
+            _db = new MasterRosterEntities();
+        }
         public List<Crew> GetAllDisctinctCrews()
         {
             return _db.Crews.Distinct().ToList();
@@ -22,16 +26,16 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return _db.Departments.Distinct().ToList();
         }
 
-        public int? GetDepartmentID(string departmentName)
+        public int? GetDepartmentIDByName(string departmentName)
         {
             return _db.Departments.Where(d => d.department_name == departmentName).SingleOrDefault().department_id;
         }
 
-        public bool InsertIntoDatabase(List<DataFileModel> records)
+        public bool InsertIntoEmployeesTable(List<DataFileModel> records)
         {
             List<Employee> managerEmployees = new List<Employee>();
             List<Employee> nonManagerEmployees = new List<Employee>();
-            int managerRoleTypeId = GetRoleTypeId("Manager");
+            int managerRoleTypeId = GetRoleTypeIdByName("Manager");
 
             bool result = false;
             try
@@ -67,6 +71,9 @@ namespace CTCDatabaseUpdater.DataAccessLayer
                 result = false;
             }
 
+            // For the manger we need to disable FK_Employees_Supervisors foreign key constraint 
+            // This constraint checks to make sure supervisor_id exists in database which in case of Managers
+            // there is no supervisor_id assigned
             if (managerEmployees.Count > 0)
             {
                 
@@ -83,11 +90,13 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             }
             if(nonManagerEmployees.Count > 0 )
             {
+
                 foreach(var employee in nonManagerEmployees)
                 {
                     _db.Employees.Add(employee);
                     
                 }
+
                 _db.SaveChanges();
             }
             return result;
@@ -98,7 +107,7 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return _db.RoleTypes.Distinct().ToList();
         }
 
-        public int GetRoleTypeId(string roleTypeName)
+        public int GetRoleTypeIdByName(string roleTypeName)
         {
             return _db.RoleTypes.Where(r => r.roletype_name == roleTypeName).SingleOrDefault().roletype_id;
         }
