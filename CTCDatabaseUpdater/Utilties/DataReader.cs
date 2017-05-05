@@ -63,6 +63,5 @@ namespace CTCDatabaseUpdater
             return file.ReadToEnd();
         }
 
-
     }
 }

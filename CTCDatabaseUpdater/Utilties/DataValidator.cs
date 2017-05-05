@@ -240,15 +240,17 @@ namespace CTCDatabaseUpdater
 
             return result;
         }
-
+        
         private bool isDuplicatedRecord(string employeeNumner)
         {
             return _dal.DoesEmployeeNumberExist(employeeNumner);
         }
 
+
+        #region GettingFinalRecords
         public List<DataFileRecordModel> GetValidatedManagerRecords()
         {
-            return ValidRecords.Where(vr => vr.Role == "Manager").ToList();
+            return (ValidRecords.Where(vr => vr.Role == "Manager").ToList());
 
         }
 
@@ -276,5 +278,73 @@ namespace CTCDatabaseUpdater
         {
             return DuplicatedRecords.Where(vr => vr.Role == "Worker").ToList();
         }
+        #endregion
+
+
+
+
+        #region GettingEmployees
+        public List<Employee> GetValidatedManagerEmployees()
+        {
+            return CreateEmployeesFromRecords(GetValidatedManagerRecords());
+
+        }
+
+        public List<Employee> GetDuplicatedManagerEmployees()
+        {
+            return CreateEmployeesFromRecords(GetDuplicatedManagerRecords());
+        }
+
+        public List<Employee> GetValidatedSupervisorEmployees()
+        {
+            return CreateEmployeesFromRecords(GetValidatedSupervisorRecords());
+        }
+
+        public List<Employee> GetDuplicatedSupervisorEmployees()
+        {
+            return CreateEmployeesFromRecords(GetDuplicatedSupervisorRecords());
+        }
+
+        public List<Employee> GetValidatedWorkerEmployees()
+        {
+            return CreateEmployeesFromRecords(GetValidatedWorkerRecords());
+        }
+
+        public List<Employee> GetDuplicatedWorkerEmployees()
+        {
+            return CreateEmployeesFromRecords(GetDuplicatedWorkerRecords());
+        }
+
+        #endregion
+
+
+
+        public List<Employee> CreateEmployeesFromRecords(List<DataFileRecordModel> records)
+        {
+            List<Employee> employees = new List<Employee>();
+            List<Department> allDistinctDepartments = _dal.GetAllDistinctDepartments();
+            List<RoleType> allDistinctRoleTypes = _dal.GetAllDistinctRollTypes();
+            List<Crew> allDistinctCrews = _dal.GetAllDisctinctCrews();
+
+            foreach (var record in records)
+            {
+                Employee employee = new Employee()
+                {
+                    name = record.employee_name,
+                    department_id = allDistinctDepartments.Where(d => d.department_name == record.DepartmentName).SingleOrDefault().department_id,
+                    employee_num = record.Employee_num,
+                    status = (record.Status == Statuses.Active) ? (true) : (false),
+                    seniority_date = Convert.ToDateTime(record.SeniorityDate),
+                    roletype_id = allDistinctRoleTypes.Where(r => r.roletype_name == record.Role).SingleOrDefault().roletype_id,
+                    crew_id = allDistinctCrews.Where(c => c.crew_code == record.Crew_Code).SingleOrDefault().crew_id,
+                    supervisor_id = _dal.GetLastEmployeeIdForEmployeeNumber(record.Supervisor_num)
+                };
+
+                employees.Add(employee);
+            }
+
+            return employees;
+        }
+
     }
 }

@@ -36,77 +36,40 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return _db.Departments.Where(d => d.department_name == departmentName).SingleOrDefault().department_id;
         }
 
-        public bool InsertIntoEmployeesTable(List<DataFileRecordModel> records)
+        public bool InsertIntoEmployeesTable(List<Employee> employees, bool disableForeignKey = false)
         {
-            List<Employee> managerEmployees = new List<Employee>();
-            List<Employee> nonManagerEmployees = new List<Employee>();
-            int managerRoleTypeId = GetRoleTypeIdByName("Manager");
-
-            bool result = false;
+            bool result = true;
             try
             {
-                foreach (var record in records)
+                // For the manger we need to disable FK_Employees_Supervisors foreign key constraint 
+                // This constraint checks to make sure supervisor_id exists in database which in case of Managers
+                // there is no supervisor_id assigned
+                if (disableForeignKey)
                 {
-                    // here I need to check if the record exists in the database already or not
-                    Employee employee = new Employee()
-                    {
-                        name = record.employee_name,
-                        department_id = GetAllDistinctDepartments().Where(d => d.department_name == record.DepartmentName).SingleOrDefault().department_id,
-                        employee_num = record.Employee_num,
-                        status = (record.Status == Statuses.Active) ? (true) : (false),
-                        seniority_date = Convert.ToDateTime(record.SeniorityDate),
-                        roletype_id = GetAllDistinctRollTypes().Where(r => r.roletype_name == record.Role).SingleOrDefault().roletype_id,
-                        crew_id = GetAllDisctinctCrews().Where(c => c.crew_code == record.Crew_Code).SingleOrDefault().crew_id,
-                        supervisor_id = GetLastEmployeeIdForEmployeeNumber(record.Supervisor_num)
-                    };
-
-                    if (employee.roletype_id == managerRoleTypeId)
-                    {
-                        managerEmployees.Add(employee);
-                    }
-                    else
-                    {
-                        nonManagerEmployees.Add(employee);
-                    }
+                    _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NOT NULL) BEGIN ALTER TABLE Employees DROP CONSTRAINT FK_Employees_Supervisors END");
                 }
 
-                result = true;
+                foreach (var employee in employees)
+                {
+                    _db.Employees.Add(employee);
+                }
+
+                _db.SaveChanges();
+
+                if (disableForeignKey)
+                {
+                    _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NULL) BEGIN ALTER TABLE Employees With Nocheck Add CONSTRAINT [FK_Employees_Supervisors] foreign key(supervisor_id) references[Employees](employee_id) END");
+                }
             }
             catch
             {
                 result = false;
+                // log the details
             }
 
-            // For the manger we need to disable FK_Employees_Supervisors foreign key constraint 
-            // This constraint checks to make sure supervisor_id exists in database which in case of Managers
-            // there is no supervisor_id assigned
-            if (managerEmployees.Count > 0)
-            {
-                
-                _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NOT NULL) BEGIN ALTER TABLE Employees DROP CONSTRAINT FK_Employees_Supervisors END");
-
-                foreach(var manager in managerEmployees)
-                {
-                    _db.Employees.Add(manager);
-                }
-                _db.SaveChanges();
-
-                _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NULL) BEGIN ALTER TABLE Employees With Nocheck Add CONSTRAINT [FK_Employees_Supervisors] foreign key(supervisor_id) references[Employees](employee_id) END");
-                
-            }
-            if(nonManagerEmployees.Count > 0 )
-            {
-
-                foreach(var employee in nonManagerEmployees)
-                {
-                    _db.Employees.Add(employee);
-                    
-                }
-
-                _db.SaveChanges();
-            }
             return result;
         }
+
 
         public List<string> GetAllEmployeeNumbers()
         {
@@ -144,5 +107,24 @@ namespace CTCDatabaseUpdater.DataAccessLayer
         {
             return _db.RoleTypes.Where(r => r.roletype_name == roleTypeName).SingleOrDefault().roletype_id;
         }
+
+        public bool UpdateEmployeeRecord(Employee employee)
+        {
+            bool result = true;
+            try
+            {
+                _db.Employees.Attach(employee);
+                _db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
+                _db.SaveChanges();
+            }
+            catch
+            {
+                result = false;
+                //log the details
+            }
+
+            return result;
+        }
     }
 }
+

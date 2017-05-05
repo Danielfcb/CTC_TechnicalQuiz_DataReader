@@ -36,13 +36,16 @@ namespace CTCDatabaseUpdater
                 List<string> invalidRecords = dataValidator.InvalidRecord;
 
                 // Employees with "Manager" role need to be inserted (if they don't exist) or updated (if they are already in database)
-
+                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetValidatedManagerEmployees());
+                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetDuplicatedManagerEmployees());
 
                 // Employees with "Supervisor" role need to be inserted (if they don't exist) or updated (if they are already in database)
-
+                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetValidatedSupervisorEmployees());
+                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetDuplicatedSupervisorEmployees());
 
                 // Employee with "Worker" role need to be inserted (if they don't exist) or updated (if they are already in database)
-
+                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetValidatedWorkerEmployees());
+                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetDuplicatedWorkerEmployees());
                 // Invalid records are logged in a log file - The log file address should be read from the Config file
 
             }
