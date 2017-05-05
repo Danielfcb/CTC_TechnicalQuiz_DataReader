@@ -18,6 +18,8 @@ namespace CTCDatabaseUpdater
     {
         private DAL _dal;
         private string _employeeNumberRegex;
+        private string _employeeNameRegex;
+
         public List<DataFileRecordModel> ValidRecords { get; private set; }
         public List<string> InvalidRecords { get; private set; }
         public List<DataFileRecordModel> DuplicatedRecords { get; private set; }
@@ -30,6 +32,7 @@ namespace CTCDatabaseUpdater
             DuplicatedRecords = new List<DataFileRecordModel>();
             InvalidRecords = new List<string>();
             _employeeNumberRegex = ConfigurationManager.AppSettings["EmployeeNumberRegex"];
+            _employeeNameRegex = ConfigurationManager.AppSettings["EmployeeNameRegex"];
         }
 
         public void ValidateFileContent(string fileContent)
@@ -148,7 +151,7 @@ namespace CTCDatabaseUpdater
         {
             bool result = true;
 
-            if(string.IsNullOrEmpty(employeeName))
+            if(string.IsNullOrEmpty(employeeName) || !Regex.IsMatch(employeeName,_employeeNameRegex))
             {
                 result = false;
             }
@@ -219,7 +222,8 @@ namespace CTCDatabaseUpdater
             bool result = true;
 
             // Other than managers, rest of the employees must have a supervisor assigned
-            if(roleType != "Manager" && string.IsNullOrEmpty(supervisorName))
+            if((string.IsNullOrEmpty(supervisorName) && roleType != "Manager") || 
+                (!string.IsNullOrEmpty(supervisorName) && !Regex.IsMatch(supervisorName,_employeeNameRegex)) )
             {
                 result = false;
             }
@@ -354,6 +358,7 @@ namespace CTCDatabaseUpdater
                 }
                 catch
                 {
+                    // TODO: This needs to get fixed!
                     InvalidRecords.Add(record.ToString());
                 }
             }

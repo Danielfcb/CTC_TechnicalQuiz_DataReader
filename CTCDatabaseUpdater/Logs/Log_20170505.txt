@@ -1,10 +1,114 @@
-5/5/17 12:05:42 AM    Starting the job!
-5/5/17 12:07:20 AM    Invalid Records:
-5/5/17 12:07:20 AM    -1.00E+02,DAY,Abeu Orgill,s,03-2515161,Manager,01/05/2014,Matti Klich,28-3372512
+5/5/17 12:32:30 AM    Starting the job!
+5/5/17 12:33:17 AM    98 Invalid Records found!
+5/5/17 12:33:17 AM    -1.00E+02,DAY,Abeu Orgill,s,03-2515161,Manager,01/05/2014,Matti Klich,28-3372512
 Caseflow,AFT,Carleton Ilden,Active,<img src=x onerror=alert('hi') />,,11/28/2002, test ,
+Caseflow,AFT,../../../../../../../../../../../etc/passwd%00,Active,08-0640260,Worker,05/02/2013,Gus McGougan,34-5995389
 Caseflow,AFT,Hedwig Lodewick,Active,1;DROP TABLE users,Worker,09/13/2014,Gus McGougan,34-5995389
 Caseflow,EVM,Arline Stubbes,Active,69-0560246,Supervisor,10/02/2005,Anthony Probate,13-6198886
 OperationsSupport,EVN,Binny Demaid,Active,30-6790569,Worker,03/07/2011,Ermengarde Ivens,86-5474070
 Palletflow,DAY,Cobb Prattin,Active,38-6551956,Worker,26/11/2013,Anne-corinne Sprouls,31-8208353
 CTCDatabaseUpdater.Models.DataFileRecordModel
-5/5/17 12:07:46 AM    Job Finished!
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+CTCDatabaseUpdater.Models.DataFileRecordModel
+5/5/17 12:33:17 AM    Job Finished!
+5/5/17 12:43:11 AM    Starting the job!
+5/5/17 12:44:14 AM    Starting the job!
+5/5/17 12:45:56 AM    Starting the job!
+5/5/17 12:46:20 AM    Starting the job!
+5/5/17 12:50:22 AM    Starting the job!
+5/5/17 12:52:22 AM    Starting the job!
+5/5/17 12:55:10 AM    Starting the job!
+5/5/17 12:58:50 AM    Starting the job!
+5/5/17 1:08:13 AM    Starting the job!
+5/5/17 1:08:28 AM    Starting the job!
+5/5/17 1:09:52 AM    Starting the job!
+5/5/17 1:10:01 AM    Starting the job!
+5/5/17 1:10:51 AM    Starting the job!

@@ -1,18 +1,0 @@
-
-5/4/17 11:28:03 PM    Starting the job!
-5/4/17 11:28:06 PM    Invalid Records:
-5/4/17 11:28:07 PM    Caseflow,DAY,Vivien Scarfe,Active,22-5511538,Worker,9/12/14,,
-5/4/17 11:30:30 PM    Starting the job!
-5/4/17 11:37:00 PM    Starting the job!
-5/4/17 11:44:09 PM    Starting the job!
-5/4/17 11:45:11 PM    Starting the job!
-5/4/17 11:52:01 PM    Starting the job!
-5/4/17 11:53:40 PM    Invalid Records:
-5/4/17 11:53:40 PM    -1.00E+02,DAY,Abeu Orgill,s,03-2515161,Manager,01/05/2014,Matti Klich,28-3372512
-Caseflow,AFT,Carleton Ilden,Active,<img src=x onerror=alert('hi') />,,11/28/2002, test ,
-Caseflow,EVM,Arline Stubbes,Active,69-0560246,Supervisor,10/02/2005,Anthony Probate,13-6198886
-OperationsSupport,EVN,Binny Demaid,Active,30-6790569,Worker,03/07/2011,Ermengarde Ivens,86-5474070
-Palletflow,DAY,Cobb Prattin,Active,38-6551956,Worker,26/11/2013,Anne-corinne Sprouls,31-8208353
-CTCDatabaseUpdater.Models.DataFileRecordModel
-5/4/17 11:53:40 PM    Job Finished!
-5/4/17 11:54:01 PM    Starting the job!

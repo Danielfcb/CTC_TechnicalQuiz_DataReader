@@ -53,7 +53,7 @@ namespace CTCDatabaseUpdater
                 dataAccessLayer.UpdateEmployeeRecords(dataValidator.GetDuplicatedWorkerEmployees());
 
                 // Invalid records are logged in a log file - The log file address should be read from the Config file
-                LogWriter.WriteLog("Invalid Records:");
+                LogWriter.WriteLog(dataValidator.InvalidRecords.Count() + " Invalid Records found!");
                 LogWriter.WriteLog(String.Join("\n",dataValidator.InvalidRecords.ToArray()));
 
 

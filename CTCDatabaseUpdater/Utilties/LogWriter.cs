@@ -38,7 +38,8 @@ namespace CTCDatabaseUpdater.Utilties
             }
             if(!File.Exists(_logFileFullName))
             {
-                File.Create(_logFileFullName);
+                var file = File.Create(_logFileFullName);
+                file.Close();
             }
 
             using (StreamWriter sw = File.AppendText(_logFileFullName))
