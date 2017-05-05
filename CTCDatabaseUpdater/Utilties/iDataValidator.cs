@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CTCDatabaseUpdater
+namespace CTCDatabaseUpdater.Utilties
 {
-    interface iDataReader<dataModel>
+    interface iDataValidator<dataModel>
     {
-        //List<dataModel> ReadFile(string FullDataFilePath);
 
     }
 }

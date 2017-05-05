@@ -1,50 +1,117 @@
 ﻿
 using CTCDatabaseUpdater.DataAccessLayer;
+using CTCDatabaseUpdater.Models;
+using CTCDatabaseUpdater.Utilties;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CTCDatabaseUpdater.Models.DataFileModel;
+using static CTCDatabaseUpdater.Models.DataFileRecordModel;
 
 namespace CTCDatabaseUpdater
 {
-    public class DataValidator
+    public class DataValidator : iDataValidator<DataFileRecordModel>
     {
         private DAL _dal;
+        public List<DataFileRecordModel> ValidRecords { get; private set; }
+        public List<string> InvalidRecord { get; private set; }
+        public List<DataFileRecordModel> DuplicatedRecords { get; private set; }
+        public string HeaderLine { get; private set; }
 
         public DataValidator()
         {
             _dal = new DAL();
         }
-        public bool IsRecordValid(string record, out bool isDuplicated)
+
+        public void ValidateFileContent(string fileContent)
+        {
+            StringReader strReader = new StringReader(fileContent);
+            HeaderLine = strReader.ReadLine();
+
+            bool read = true;
+
+            while(read)
+            {
+                string record = strReader.ReadLine();
+                if(record != null)
+                {
+                    ValidateRecord(record);
+
+                }
+                else
+                {
+                    read = false;
+                }
+            }
+
+        }
+
+        public void ValidateRecord(string record)
         {
             bool result = true;
-            
-            string[] lineElements = record.Split(',');
 
-            isDuplicated = _dal.DoesEmployeeNumberExist(lineElements[4]);
+            string[] recordFields = record.Split(',');
 
-            result = isDepartmentNameValid(lineElements[0]);
+            result = isDepartmentNameValid(recordFields[0]);
             if (result)
-                result = isCrewCodeValid(lineElements[1]);
+                result = isCrewCodeValid(recordFields[1]);
             if (result)
-                result = isEmployeeNameValid(lineElements[2]);
+                result = isEmployeeNameValid(recordFields[2]);
             if (result)
-                result = isStatusValid(lineElements[3]);
+                result = isStatusValid(recordFields[3]);
             if (result)
-                result = isEmployeeNumberValid(lineElements[4]);
+                result = isEmployeeNumberValid(recordFields[4]);
             if (result)
-                result = isRoleTypeValid(lineElements[5]);
+                result = isRoleTypeValid(recordFields[5]);
             if (result)
-                result = isSeniorityDateValid(lineElements[6]);
+                result = isSeniorityDateValid(recordFields[6]);
             if (result)
-                result = isSupervisorNameValid(lineElements[7], lineElements[5]);
+                result = isSupervisorNameValid(recordFields[7], recordFields[5]);
             if (result)
-                result = isSupervisorNumberValid(lineElements[8], lineElements[5]);
+                result = isSupervisorNumberValid(recordFields[8], recordFields[5]);
             // check that someone shoudn't report to themselves   
 
-            return result;
+            if(result)
+            {
+                DataFileRecordModel dataFileModel = CreateDataFileRecordModel(record);
+                // check if the data is duplicated
+                if (isDuplicatedRecord(record))
+                {
+                    DuplicatedRecords.Add(dataFileModel);
+                }
+                else
+                {
+                    ValidRecords.Add(dataFileModel);
+                }
+            }
+            else
+            {
+                InvalidRecord.Add(record);
+            }
+
+
+        }
+
+        public DataFileRecordModel CreateDataFileRecordModel(string record)
+        {
+            string[] recordFields = record.Split(',');
+
+            DataFileRecordModel dataFileRecordModel = new DataFileRecordModel()
+            {
+                DepartmentName = recordFields[0],
+                Crew_Code = recordFields[1],
+                employee_name = recordFields[2],
+                Status = (Statuses)Enum.Parse(typeof(Statuses), recordFields[3]),
+                Employee_num = recordFields[4],
+                Role = recordFields[5],
+                SeniorityDate = recordFields[6],
+                Supervisor_name = recordFields[7],
+                Supervisor_num = recordFields[8]
+            };
+
+            return dataFileRecordModel;
         }
 
         private bool isDepartmentNameValid(string departmentName)
@@ -172,6 +239,42 @@ namespace CTCDatabaseUpdater
             }
 
             return result;
+        }
+
+        private bool isDuplicatedRecord(string employeeNumner)
+        {
+            return _dal.DoesEmployeeNumberExist(employeeNumner);
+        }
+
+        public List<DataFileRecordModel> GetValidatedManagerRecords()
+        {
+            return ValidRecords.Where(vr => vr.Role == "Manager").ToList();
+
+        }
+
+        public List<DataFileRecordModel> GetDuplicatedManagerRecords()
+        {
+            return DuplicatedRecords.Where(vr => vr.Role == "Manager").ToList();
+        }
+
+        public List<DataFileRecordModel> GetValidatedSupervisorRecords()
+        {
+            return ValidRecords.Where(vr => vr.Role == "Supervisor").ToList();
+        }
+
+        public List<DataFileRecordModel> GetDuplicatedSupervisorRecords()
+        {
+            return DuplicatedRecords.Where(vr => vr.Role == "Supervisor").ToList();
+        }
+
+        public List<DataFileRecordModel> GetValidatedWorkerRecords()
+        {
+            return ValidRecords.Where(vr => vr.Role == "Worker").ToList();
+        }
+
+        public List<DataFileRecordModel> GetDuplicatedWorkerRecords()
+        {
+            return DuplicatedRecords.Where(vr => vr.Role == "Worker").ToList();
         }
     }
 }

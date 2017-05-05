@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static CTCDatabaseUpdater.Models.DataFileModel;
+using static CTCDatabaseUpdater.Models.DataFileRecordModel;
 
 namespace CTCDatabaseUpdater.DataAccessLayer
 {
@@ -36,7 +36,7 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return _db.Departments.Where(d => d.department_name == departmentName).SingleOrDefault().department_id;
         }
 
-        public bool InsertIntoEmployeesTable(List<DataFileModel> records)
+        public bool InsertIntoEmployeesTable(List<DataFileRecordModel> records)
         {
             List<Employee> managerEmployees = new List<Employee>();
             List<Employee> nonManagerEmployees = new List<Employee>();

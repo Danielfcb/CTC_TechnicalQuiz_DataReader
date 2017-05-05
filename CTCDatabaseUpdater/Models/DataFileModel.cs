@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CTCDatabaseUpdater.Models
 {
 
-    public class DataFileModel
+    public class DataFileRecordModel
     {
         public enum Statuses
         {
