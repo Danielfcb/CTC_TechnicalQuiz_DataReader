@@ -33,19 +33,20 @@ namespace CTCDatabaseUpdater
 
                 List<DataFileRecordModel> validRecords = dataValidator.ValidRecords;
                 List<DataFileRecordModel> duplicatedRecords = dataValidator.DuplicatedRecords;
-                List<string> invalidRecords = dataValidator.InvalidRecord;
+                List<string> invalidRecords = dataValidator.InvalidRecords;
 
                 // Employees with "Manager" role need to be inserted (if they don't exist) or updated (if they are already in database)
-                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetValidatedManagerEmployees());
-                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetDuplicatedManagerEmployees());
+                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetValidatedManagerEmployees(), true);
+                dataAccessLayer.UpdateEmployeeRecords(dataValidator.GetDuplicatedManagerEmployees(), true);
 
                 // Employees with "Supervisor" role need to be inserted (if they don't exist) or updated (if they are already in database)
                 dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetValidatedSupervisorEmployees());
-                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetDuplicatedSupervisorEmployees());
+                dataAccessLayer.UpdateEmployeeRecords(dataValidator.GetDuplicatedSupervisorEmployees());
 
                 // Employee with "Worker" role need to be inserted (if they don't exist) or updated (if they are already in database)
                 dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetValidatedWorkerEmployees());
-                dataAccessLayer.InsertIntoEmployeesTable(dataValidator.GetDuplicatedWorkerEmployees());
+                dataAccessLayer.UpdateEmployeeRecords(dataValidator.GetDuplicatedWorkerEmployees());
+
                 // Invalid records are logged in a log file - The log file address should be read from the Config file
 
             }

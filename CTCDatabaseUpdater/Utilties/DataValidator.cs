@@ -16,13 +16,16 @@ namespace CTCDatabaseUpdater
     {
         private DAL _dal;
         public List<DataFileRecordModel> ValidRecords { get; private set; }
-        public List<string> InvalidRecord { get; private set; }
+        public List<string> InvalidRecords { get; private set; }
         public List<DataFileRecordModel> DuplicatedRecords { get; private set; }
         public string HeaderLine { get; private set; }
 
         public DataValidator()
         {
             _dal = new DAL();
+            ValidRecords = new List<DataFileRecordModel>();
+            DuplicatedRecords = new List<DataFileRecordModel>();
+            InvalidRecords = new List<string>();
         }
 
         public void ValidateFileContent(string fileContent)
@@ -77,7 +80,7 @@ namespace CTCDatabaseUpdater
             {
                 DataFileRecordModel dataFileModel = CreateDataFileRecordModel(record);
                 // check if the data is duplicated
-                if (isDuplicatedRecord(record))
+                if (isDuplicatedRecord(recordFields[4]))
                 {
                     DuplicatedRecords.Add(dataFileModel);
                 }
@@ -88,7 +91,7 @@ namespace CTCDatabaseUpdater
             }
             else
             {
-                InvalidRecord.Add(record);
+                InvalidRecords.Add(record);
             }
 
 

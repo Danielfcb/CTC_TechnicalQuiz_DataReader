@@ -41,24 +41,26 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             bool result = true;
             try
             {
-                // For the manger we need to disable FK_Employees_Supervisors foreign key constraint 
-                // This constraint checks to make sure supervisor_id exists in database which in case of Managers
-                // there is no supervisor_id assigned
-                if (disableForeignKey)
+                if (employees.Count() > 0)
                 {
-                    _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NOT NULL) BEGIN ALTER TABLE Employees DROP CONSTRAINT FK_Employees_Supervisors END");
-                }
+                    // For the manger we need to disable FK_Employees_Supervisors foreign key constraint 
+                    // This constraint checks to make sure supervisor_id exists in database which in case of Managers
+                    // there is no supervisor_id assigned
+                    if (disableForeignKey)
+                    {
+                        DisableForeignKey();                    }
 
-                foreach (var employee in employees)
-                {
-                    _db.Employees.Add(employee);
-                }
+                    foreach (var employee in employees)
+                    {
+                        _db.Employees.Add(employee);
+                    }
 
-                _db.SaveChanges();
+                    _db.SaveChanges();
 
-                if (disableForeignKey)
-                {
-                    _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NULL) BEGIN ALTER TABLE Employees With Nocheck Add CONSTRAINT [FK_Employees_Supervisors] foreign key(supervisor_id) references[Employees](employee_id) END");
+                    if (disableForeignKey)
+                    {
+                        EnableForeignKey();
+                    }
                 }
             }
             catch
@@ -70,6 +72,15 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return result;
         }
 
+        private void DisableForeignKey()
+        {
+            _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NOT NULL) BEGIN ALTER TABLE Employees DROP CONSTRAINT FK_Employees_Supervisors END");
+        }
+
+        private void EnableForeignKey()
+        {
+            _db.Database.ExecuteSqlCommand("IF (OBJECT_ID('FK_Employees_Supervisors', 'F') IS NULL) BEGIN ALTER TABLE Employees With Nocheck Add CONSTRAINT [FK_Employees_Supervisors] foreign key(supervisor_id) references[Employees](employee_id) END");
+        }
 
         public List<string> GetAllEmployeeNumbers()
         {
@@ -108,16 +119,46 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return _db.RoleTypes.Where(r => r.roletype_name == roleTypeName).SingleOrDefault().roletype_id;
         }
 
-        public bool UpdateEmployeeRecord(Employee employee)
+        public bool UpdateEmployeeRecords(List<Employee> employees, bool disableForeignKey = false)
         {
             bool result = true;
+
+
             try
             {
-                _db.Employees.Attach(employee);
-                _db.Entry(employee).State = System.Data.Entity.EntityState.Modified;
-                _db.SaveChanges();
+                if (employees.Count() > 0) {
+
+                    if (disableForeignKey)
+                    {
+                        DisableForeignKey();
+                    }
+
+                    // list of employee numbers to be updated
+                    List<string> updatedEmployeeNumbers = employees.Select(e => e.employee_num).ToList();
+                    var employeesInDatabase = _db.Employees.Where(e => updatedEmployeeNumbers.Contains(e.employee_num)).ToList();
+
+                    _db.Employees.Where(e => updatedEmployeeNumbers.Contains(e.employee_num)).ToList().ForEach(e =>
+                        {
+                            var newEmployeeInfo = employees.Where(newEmployee => newEmployee.employee_num == e.employee_num).SingleOrDefault();
+                            e.department_id = newEmployeeInfo.department_id;
+                            e.crew_id = newEmployeeInfo.crew_id;
+                            e.name = newEmployeeInfo.name;
+                            e.roletype_id = newEmployeeInfo.roletype_id;
+                            e.seniority_date = newEmployeeInfo.seniority_date;
+                            e.status = newEmployeeInfo.status;
+                            e.supervisor_id = newEmployeeInfo.supervisor_id;                                                            
+                        }
+                    );
+
+                    _db.SaveChanges();
+
+                    if (disableForeignKey)
+                    {
+                        EnableForeignKey();
+                    }
+                }                 
             }
-            catch
+            catch (Exception ex)
             {
                 result = false;
                 //log the details
