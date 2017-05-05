@@ -49,41 +49,14 @@ namespace CTCDatabaseUpdater
 
                 // Invalid records are logged in a log file - The log file address should be read from the Config file
 
+
+
+                //Setting the status of employees not mentioned in the data file to 0
+                List<string> employeeNumbersInDatabase = dataAccessLayer.GetAllEmployeeNumbers();
+                List<string> newEmployeeNumberList = validRecords.Select(r => r.Employee_num).ToList();
+
+                List<string> InactiveEmployeeNumbers = employeeNumbersInDatabase.Where(dbEmployeeNumber => !newEmployeeNumberList.Contains(dbEmployeeNumber)).ToList();
             }
-
-
-            //List<DataFileRecordModel> managerEmployees = new List<DataFileRecordModel>();
-            //List<DataFileRecordModel> supervisorEmployees = new List<DataFileRecordModel>();
-            //List<DataFileRecordModel> workerEmployees = new List<DataFileRecordModel>();
-
-
-            //foreach(var employee in validRecords)
-            //{
-            //    if(employee.Role == "Manager")
-            //    {
-            //        managerEmployees.Add(employee);
-            //    }
-            //    else if (employee.Role == "Supervisor")
-            //    {
-            //        supervisorEmployees.Add(employee);
-            //    }
-            //    else if(employee.Role == "Worker")
-            //    {
-            //        workerEmployees.Add(employee);
-            //    }
-            //}
-            
-
-            //dal.InsertIntoEmployeesTable(managerEmployees);
-            //dal.InsertIntoEmployeesTable(supervisorEmployees);
-            //dal.InsertIntoEmployeesTable(workerEmployees);
-
-            ////Setting the status of employees not mentioned in the data file to 0
-            //List<string> employeeNumbersInDatabase = dal.GetAllEmployeeNumbers();
-            //List<string> newEmployeeNumberList = validRecords.Select(r => r.Employee_num).ToList();
-
-            //List<string> InactiveEmployeeNumbers = employeeNumbersInDatabase.Where(dbEmployeeNumber => !newEmployeeNumberList.Contains(dbEmployeeNumber)).ToList();
-
 
         }
     }

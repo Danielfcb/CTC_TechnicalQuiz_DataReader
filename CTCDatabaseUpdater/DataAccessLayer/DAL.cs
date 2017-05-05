@@ -123,7 +123,6 @@ namespace CTCDatabaseUpdater.DataAccessLayer
         {
             bool result = true;
 
-
             try
             {
                 if (employees.Count() > 0) {
@@ -135,7 +134,6 @@ namespace CTCDatabaseUpdater.DataAccessLayer
 
                     // list of employee numbers to be updated
                     List<string> updatedEmployeeNumbers = employees.Select(e => e.employee_num).ToList();
-                    var employeesInDatabase = _db.Employees.Where(e => updatedEmployeeNumbers.Contains(e.employee_num)).ToList();
 
                     _db.Employees.Where(e => updatedEmployeeNumbers.Contains(e.employee_num)).ToList().ForEach(e =>
                         {
