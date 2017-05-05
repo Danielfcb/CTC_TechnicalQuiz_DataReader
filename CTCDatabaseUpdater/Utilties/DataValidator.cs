@@ -4,9 +4,11 @@ using CTCDatabaseUpdater.Models;
 using CTCDatabaseUpdater.Utilties;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using static CTCDatabaseUpdater.Models.DataFileRecordModel;
 
@@ -15,6 +17,7 @@ namespace CTCDatabaseUpdater
     public class DataValidator : iDataValidator<DataFileRecordModel>
     {
         private DAL _dal;
+        private string _employeeNumberRegex;
         public List<DataFileRecordModel> ValidRecords { get; private set; }
         public List<string> InvalidRecords { get; private set; }
         public List<DataFileRecordModel> DuplicatedRecords { get; private set; }
@@ -26,6 +29,7 @@ namespace CTCDatabaseUpdater
             ValidRecords = new List<DataFileRecordModel>();
             DuplicatedRecords = new List<DataFileRecordModel>();
             InvalidRecords = new List<string>();
+            _employeeNumberRegex = ConfigurationManager.AppSettings["EmployeeNumberRegex"];
         }
 
         public void ValidateFileContent(string fileContent)
@@ -171,8 +175,8 @@ namespace CTCDatabaseUpdater
         private bool isEmployeeNumberValid(string employeeNumber)
         {
             bool result = true;
-
-            if(string.IsNullOrEmpty(employeeNumber))
+            
+            if(string.IsNullOrEmpty(employeeNumber) || !Regex.IsMatch(employeeNumber, _employeeNumberRegex))
             {
                 result = false;
             }
@@ -240,6 +244,7 @@ namespace CTCDatabaseUpdater
             {
                 result = false;
             }
+            // The supervisor ID should already be in database or it should be in data file ready to be inserted!
 
             return result;
         }
@@ -331,19 +336,26 @@ namespace CTCDatabaseUpdater
 
             foreach (var record in records)
             {
-                Employee employee = new Employee()
+                try
                 {
-                    name = record.employee_name,
-                    department_id = allDistinctDepartments.Where(d => d.department_name == record.DepartmentName).SingleOrDefault().department_id,
-                    employee_num = record.Employee_num,
-                    status = (record.Status == Statuses.Active) ? (true) : (false),
-                    seniority_date = Convert.ToDateTime(record.SeniorityDate),
-                    roletype_id = allDistinctRoleTypes.Where(r => r.roletype_name == record.Role).SingleOrDefault().roletype_id,
-                    crew_id = allDistinctCrews.Where(c => c.crew_code == record.Crew_Code).SingleOrDefault().crew_id,
-                    supervisor_id = _dal.GetLastEmployeeIdForEmployeeNumber(record.Supervisor_num)
-                };
+                    Employee employee = new Employee()
+                    {
+                        name = record.employee_name,
+                        department_id = allDistinctDepartments.Where(d => d.department_name == record.DepartmentName).SingleOrDefault().department_id,
+                        employee_num = record.Employee_num,
+                        status = (record.Status == Statuses.Active) ? (true) : (false),
+                        seniority_date = Convert.ToDateTime(record.SeniorityDate),
+                        roletype_id = allDistinctRoleTypes.Where(r => r.roletype_name == record.Role).SingleOrDefault().roletype_id,
+                        crew_id = allDistinctCrews.Where(c => c.crew_code == record.Crew_Code).SingleOrDefault().crew_id,
+                        supervisor_id = _dal.GetEmployeeIdForEmployeeNumber(record.Supervisor_num)
+                    };
 
-                employees.Add(employee);
+                    employees.Add(employee);
+                }
+                catch
+                {
+                    InvalidRecords.Add(record.ToString());
+                }
             }
 
             return employees;

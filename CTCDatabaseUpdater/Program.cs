@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using CTCDatabaseUpdater.Models;
 using CTCDatabaseUpdater.DataAccessLayer;
+using CTCDatabaseUpdater.Utilties;
 
 namespace CTCDatabaseUpdater
 {
@@ -14,6 +15,10 @@ namespace CTCDatabaseUpdater
     {
         static void Main(string[] args)
         {
+            
+            LogWriter logWriter = new LogWriter();
+            LogWriter.WriteLog("Starting the job!");
+
             // Finding the data files folder
             DataReader reader = new DataReader();
             string dataFilesFolder = reader.GetDataFilesFolder();
@@ -48,7 +53,8 @@ namespace CTCDatabaseUpdater
                 dataAccessLayer.UpdateEmployeeRecords(dataValidator.GetDuplicatedWorkerEmployees());
 
                 // Invalid records are logged in a log file - The log file address should be read from the Config file
-
+                LogWriter.WriteLog("Invalid Records:");
+                LogWriter.WriteLog(String.Join("\n",dataValidator.InvalidRecords.ToArray()));
 
 
                 //Setting the status of employees not mentioned in the data file to 0
@@ -58,6 +64,8 @@ namespace CTCDatabaseUpdater
                 List<string> InactiveEmployeeNumbers = employeeNumbersInDatabase.Where(dbEmployeeNumber => !newEmployeeNumberList.Contains(dbEmployeeNumber)).ToList();
             }
 
+            // Some destructor tasks here (i.e. make sure if foreign ket is enables again in case something crashed)
+            LogWriter.WriteLog("Job Finished!");
         }
     }
 }

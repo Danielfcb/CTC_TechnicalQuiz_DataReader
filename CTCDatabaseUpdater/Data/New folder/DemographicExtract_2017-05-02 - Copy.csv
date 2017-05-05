@@ -1,0 +1,12 @@
+department_name,crew_code,employee_name,status,employee_num,role,seniority_date,supervisor_name,supervisor_num
+Caseflow,DAY,Matti Klich,Active,28-3372512,Manager,8/10/15,,
+Caseflow,DAY,Abeu Orgill,Active,03-2515161,Supervisor,1/5/14,Matti Klich,28-3372512
+Caseflow,DAY,Cash Garland,Active,39-8817037,Supervisor,12/7/16,Matti Klich,28-3372512
+Caseflow,DAY,Jenine Geistmann,Active,58-1941168,Supervisor,12/1/09,Matti Klich,28-3372512
+Caseflow,DAY,Jeffry Ives,Active,02-6598715,Worker,2/7/12,Abeu Orgill,03-2515161
+Caseflow,DAY,Dynah Crimin,Active,07-7371708,Worker,4/20/17,Jenine Geistmann,58-1941168
+Caseflow,DAY,Jeremy Trood,Active,13-4031670,Worker,6/9/09,Jenine Geistmann,58-1941168
+Caseflow,DAY,Gearard Savile,Active,18-1525908,Worker,5/3/15,Abeu Orgill,03-2515161
+Caseflow,DAY,Burr Ginnell,Active,21-9680801,Worker,4/5/05,Cash Garland,39-8817037
+Caseflow,DAY,Vivien Scarfe,Active,22-5511538,Worker,9/12/14,Jenine Geistmann,58-1941168
+Caseflow,DAY,Vivien Scarfe,Active,22-5511538,Worker,9/12/14,,

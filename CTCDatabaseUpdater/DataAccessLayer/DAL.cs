@@ -98,7 +98,7 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             _db.Database.ExecuteSqlCommand("delete from Employees where employee_num='" + employeeNumber + "'");
         }
 
-        public int? GetLastEmployeeIdForEmployeeNumber(string employeeNumber)
+        public int? GetEmployeeIdForEmployeeNumber(string employeeNumber)
         {
             if (!string.IsNullOrEmpty(employeeNumber))
             {
