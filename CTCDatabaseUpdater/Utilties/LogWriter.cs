@@ -49,7 +49,7 @@ namespace CTCDatabaseUpdater.Utilties
 
             using (StreamWriter sw = File.AppendText(_logFileFullName))
             {
-                sw.WriteLine(DateTime.Now.ToString("0:MM/dd/yyyy hh:mm:ss tt") + "    " + log);
+                sw.WriteLine(DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt") + "    " + log);
             }
             
         }

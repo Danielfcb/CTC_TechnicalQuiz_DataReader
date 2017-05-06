@@ -172,3 +172,30 @@ Shipping,EVN,Daniel Rooein,Active,10-6251425,Supervisor,7/4/05,Some Unknown,99-9
 0:05/06/2017 01:42:28 PM    Job Finished!
 
 
+0:05/06/2017 01:45:45 PM    Starting a new job!
+0:05/06/2017 01:45:45 PM    Starting to read file: DemographicExtract_2017-05-02.csv
+0:05/06/2017 01:45:45 PM    Validating the file: DemographicExtract_2017-05-02.csv
+0:05/06/2017 01:45:48 PM    Inserting valid data form DemographicExtract_2017-05-02.csv into the database
+0:05/06/2017 01:45:49 PM    Setting the status of inactive employees from the fileDemographicExtract_2017-05-02.csv
+0:05/06/2017 01:45:49 PM    Finished reading the file: DemographicExtract_2017-05-02.csv
+0:05/06/2017 01:45:49 PM    Starting to read file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:45:49 PM    Validating the file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:45:50 PM    Inserting valid data form DemographicExtract_2017-05-03.csv into the database
+0:05/06/2017 01:45:50 PM    10 Invalid Records found!
+
+-1.00E+02,DAY,Abeu Orgill,s,03-2515161,Manager,1/5/14,Matti Klich,28-3372512
+Caseflow,DAY,Cash Garland,Active,39-8817037,Supervisor,12/7/16,,28-3372512
+Caseflow,AFT,Carleton Ilden,Active,<img src=x onerror=alert('hi') />,,11/28/02, test ,
+Caseflow,AFT,../../../../../../../../../../../etc/passwd%00,Active,08-0640260,Worker,5/2/13,Gus McGougan,34-5995389
+Caseflow,AFT,Hedwig Lodewick,Active,1;DROP TABLE users,Worker,9/13/14,Gus McGougan,34-5995389
+Caseflow,EVM,Arline Stubbes,Active,69-0560246,Supervisor,10/2/05,Anthony Probate,13-6198886
+Caseflow,EVN,Doyle Ruit,Active,88-3595253,Supervisor,8/28/04,Anthony Probate,13-61988B6
+OperationsSupport,EVN,Binny Demaid,Active,30-6790569,Worker,3/7/11,Ermengarde Ivens,86-5474070
+Palletflow,DAY,Cobb Prattin,Active,38-6551956,Worker,26/11/2013,Anne-corinne Sprouls,31-8208353
+Shipping,EVN,Daniel Rooein,Active,10-6251425,Supervisor,7/4/05,Some Unknown,99-9999999
+
+0:05/06/2017 01:45:50 PM    Setting the status of inactive employees from the fileDemographicExtract_2017-05-03.csv
+0:05/06/2017 01:45:50 PM    Finished reading the file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:45:50 PM    Job Finished!
+
+
