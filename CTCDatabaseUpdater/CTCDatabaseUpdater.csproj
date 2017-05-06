@@ -91,7 +91,6 @@
     </Compile>
     <Compile Include="Utilties\DataReader.cs" />
     <Compile Include="Utilties\DataValidator.cs" />
-    <Compile Include="Utilties\iDataReader.cs" />
     <Compile Include="Models\DataFileModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

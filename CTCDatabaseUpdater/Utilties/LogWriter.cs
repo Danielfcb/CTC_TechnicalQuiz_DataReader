@@ -12,7 +12,7 @@ namespace CTCDatabaseUpdater.Utilties
     {
         private static string _logFileFullName;
         private static string _logFileFolder;
-        public LogWriter()
+        private static void InitializeLogWriter()
         {
             if (ConfigurationManager.AppSettings["AbsoluteLogFilePath"] == "" && ConfigurationManager.AppSettings["RelativeLogFilePath"] == "")
             {
@@ -28,23 +28,28 @@ namespace CTCDatabaseUpdater.Utilties
             }
 
             _logFileFullName = _logFileFolder + "/Log_" + DateTime.Today.ToString("yyyyMMdd") + ".txt";
-        }
 
-        public static void WriteLog(string log)
-        {
-            if(!Directory.Exists(_logFileFolder))
+            if (!Directory.Exists(_logFileFolder))
             {
                 Directory.CreateDirectory(_logFileFolder);
             }
-            if(!File.Exists(_logFileFullName))
+            if (!File.Exists(_logFileFullName))
             {
                 var file = File.Create(_logFileFullName);
                 file.Close();
             }
+        }
+
+        public static void WriteLog(string log)
+        {
+            if (string.IsNullOrEmpty(_logFileFolder) || string.IsNullOrEmpty(_logFileFullName))
+            {
+                InitializeLogWriter();
+            }
 
             using (StreamWriter sw = File.AppendText(_logFileFullName))
             {
-                sw.WriteLine(DateTime.Now + "    " + log);
+                sw.WriteLine(DateTime.Now.ToString("0:MM/dd/yyyy hh:mm:ss tt") + "    " + log);
             }
             
         }

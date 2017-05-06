@@ -12,7 +12,7 @@ using static CTCDatabaseUpdater.Models.DataFileRecordModel;
 
 namespace CTCDatabaseUpdater
 {
-    public class DataReader : iDataReader<DataFileRecordModel>
+    public class DataReader 
     {
         private string _dataFilesFolder;
         private DataValidator _dataValidator;

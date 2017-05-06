@@ -8,6 +8,8 @@ namespace CTCDatabaseUpdater.Utilties
 {
     interface iDataValidator<dataModel>
     {
-
+        List<dataModel> ValidRecords { get; }
+        List<string> InvalidRecords { get; }
+        List<dataModel> DuplicatedRecords { get; }
     }
 }

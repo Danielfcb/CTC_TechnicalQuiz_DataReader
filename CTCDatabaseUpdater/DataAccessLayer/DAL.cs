@@ -87,9 +87,12 @@ namespace CTCDatabaseUpdater.DataAccessLayer
             return _db.Employees.Select(e => e.employee_num).ToList();
         }
 
-        public void SetStatusToInactive(string employeeNumber)
+        public void SetStatusToInactive(List<string> employeeNumbersToSetToInactive)
         {
-            _db.Database.ExecuteSqlCommand("Update Employees set Status = 0 where employee_num='" + employeeNumber + "'");
+            foreach (string employeeNumber in employeeNumbersToSetToInactive)
+            {
+                _db.Database.ExecuteSqlCommand("Update Employees set Status = 0 where employee_num='" + employeeNumber + "'");
+            }
 
         }
 
@@ -100,14 +103,22 @@ namespace CTCDatabaseUpdater.DataAccessLayer
 
         public int? GetEmployeeIdForEmployeeNumber(string employeeNumber)
         {
+            int? employeeId = null;
+
             if (!string.IsNullOrEmpty(employeeNumber))
             {
-                return _db.Employees.Where(e => e.employee_num == employeeNumber).SingleOrDefault().employee_id;
+                var employee = _db.Employees.Where(e => e.employee_num == employeeNumber).SingleOrDefault();
+                if (employee != null)
+                {
+                    employeeId =  employee.employee_id;
+                }
             }
             else
             {
-                return null;
+                employeeId =  null;
             }
+
+            return employeeId;
         }
         public List<RoleType> GetAllDistinctRollTypes()
         {

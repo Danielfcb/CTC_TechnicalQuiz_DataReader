@@ -58,7 +58,7 @@ namespace CTCDatabaseUpdater
 
         }
 
-        public void ValidateRecord(string record)
+        public bool ValidateRecord(string record)
         {
             bool result = true;
 
@@ -80,13 +80,12 @@ namespace CTCDatabaseUpdater
             if (result)
                 result = isSupervisorNameValid(recordFields[7], recordFields[5]);
             if (result)
-                result = isSupervisorNumberValid(recordFields[8], recordFields[5]);
-            // check that someone shoudn't report to themselves   
+                result = isSupervisorNumberValid(recordFields[4],recordFields[8], recordFields[5]);  
 
             if(result)
             {
                 DataFileRecordModel dataFileModel = CreateDataFileRecordModel(record);
-                // check if the data is duplicated
+
                 if (isDuplicatedRecord(recordFields[4]))
                 {
                     DuplicatedRecords.Add(dataFileModel);
@@ -101,7 +100,7 @@ namespace CTCDatabaseUpdater
                 InvalidRecords.Add(record);
             }
 
-
+            return result;
         }
 
         public DataFileRecordModel CreateDataFileRecordModel(string record)
@@ -231,24 +230,50 @@ namespace CTCDatabaseUpdater
             return result;
         }
 
-        /// <summary>
-        /// Other than Managers, rest of the employees must have a supervisor assigned
-        /// supervisor Id (employee_id) must be avialble in database already or it should be 
-        /// in the data file ready to inserted into the database
-        /// </summary>
-        /// <param name="supervisorNumber"></param>
-        /// <param name="roleType"></param>
-        /// <returns></returns>
-        private bool isSupervisorNumberValid(string supervisorNumber, string roleType)
+        private bool isSupervisorNumberValid(string employeeNumber ,string supervisorNumber, string roleType)
         {
             bool result = true;
 
-            // Other than managers, rest of the employees must have a supervisor assigned
-            if (roleType != "Manager" && string.IsNullOrEmpty(supervisorNumber))
+            // Validation criteria:
+            // 1. Other than managers, rest of the employees must have a supervisor assigned
+            // 2. Supervisor number should be different from employee number
+            // 3. Supervisor number should have an employee_id assigned to it in database, or it should be in the list of validated records
+            //    ready to be inserted into the database
+            if ((string.IsNullOrEmpty(supervisorNumber) && roleType != "Manager") ||
+                (!string.IsNullOrEmpty(supervisorNumber) && !Regex.IsMatch(supervisorNumber, _employeeNumberRegex)) ||
+                (employeeNumber == supervisorNumber))
             {
                 result = false;
             }
-            // The supervisor ID should already be in database or it should be in data file ready to be inserted!
+
+            if (result)
+            {
+                int? employeeIdOfSupervisorNumber = _dal.GetEmployeeIdForEmployeeNumber(supervisorNumber);
+                // The supervisor number should already be in database or it should be in data file ready to be inserted!
+                if (employeeIdOfSupervisorNumber == null)
+                {
+                    if (roleType == "Manager")
+                    {
+                        if (!string.IsNullOrEmpty(supervisorNumber))
+                        {
+                            if (employeeIdOfSupervisorNumber == null
+                                && GetValidatedManagerRecords().Where(r => r.Employee_num == supervisorNumber).Count() == 0
+                                && GetValidatedSupervisorRecords().Where(r => r.Employee_num == supervisorNumber).Count() == 0)
+                            {
+                                result = false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (GetValidatedManagerRecords().Where(r => r.Employee_num == supervisorNumber).Count() == 0 &&
+                            GetValidatedSupervisorRecords().Where(r => r.Employee_num == supervisorNumber).Count() == 0)
+                        {
+                            result = false;
+                        }
+                    }
+                }
+            }
 
             return result;
         }

@@ -1,0 +1,174 @@
+0:05/06/2017 01:40:45 PM    Starting a new job!
+0:05/06/2017 01:40:45 PM    Starting to read file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:40:45 PM    Validating the file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:40:48 PM    Inserting valid data form DemographicExtract_2017-05-03.csv into the database
+0:05/06/2017 01:40:48 PM    75 Invalid Records found!
+
+-1.00E+02,DAY,Abeu Orgill,s,03-2515161,Manager,1/5/14,Matti Klich,28-3372512
+Caseflow,DAY,Cash Garland,Active,39-8817037,Supervisor,12/7/16,,28-3372512
+Caseflow,DAY,Jeffry Ives,Active,02-6598715,Worker,2/7/12,Abeu Orgill,03-2515161
+Caseflow,DAY,Gearard Savile,Active,18-1525908,Worker,1/2/15,Abeu Orgill,03-2515161
+Caseflow,DAY,Burr Ginnell,Active,21-9680801,Worker,4/5/05,Cash Garland,39-8817037
+Caseflow,DAY,Arnaldo Barnwall,Active,26-1040296,Worker,9/5/11,Cash Garland,39-8817037
+Caseflow,DAY,Kala Andrejevic,Active,28-0735962,Worker,7/8/08,Abeu Orgill,03-2515161
+Caseflow,DAY,Rip Cicerone,Active,35-6475497,Worker,6/11/03,Cash Garland,39-8817037
+Caseflow,DAY,Vicki Cluff,Active,35-7773906,Worker,2/8/13,Abeu Orgill,03-2515161
+Caseflow,DAY,Bartholomeo Drakeley,Active,37-9660253,Worker,8/18/06,Cash Garland,39-8817037
+Caseflow,DAY,Durand Aspray,Active,38-2929927,Worker,5/21/12,Cash Garland,39-8817037
+Caseflow,DAY,Livvie Itzcovich,Active,39-8759245,Worker,4/5/17,Cash Garland,39-8817037
+Caseflow,DAY,Maye Courtenay,Active,53-0257212,Worker,8/26/10,Abeu Orgill,03-2515161
+Caseflow,DAY,Broderick Gouldeby,Active,54-4599411,Worker,6/12/15,Abeu Orgill,03-2515161
+Caseflow,DAY,Alessandro Le Breton,Active,71-7147591,Worker,11/11/04,Cash Garland,39-8817037
+Caseflow,DAY,Nickola Flannery,Active,86-8826687,Worker,12/10/10,Abeu Orgill,03-2515161
+Caseflow,DAY,Thomasine Depport,Active,89-4182296,Worker,8/29/16,Abeu Orgill,03-2515161
+Caseflow,DAY,Ellary Baldi,Active,98-0265113,Worker,10/13/08,Cash Garland,39-8817037
+Caseflow,AFT,Carleton Ilden,Active,<img src=x onerror=alert('hi') />,,11/28/02, test ,
+Caseflow,AFT,Frederick Coxall,Active,14-4342205,Supervisor,1/9/06,Carleton Ilden,17-9867095
+Caseflow,AFT,Gus McGougan,Active,34-5995389,Supervisor,3/14/11,Carleton Ilden,17-9867095
+Caseflow,AFT,Rosanne Anfossi,Active,75-5694764,Supervisor,2/29/08,Carleton Ilden,17-9867095
+Caseflow,AFT,Shep Devonside,Active,02-0287856,Worker,8/29/08,Gus McGougan,34-5995389
+Caseflow,AFT,Kippie Astbury,Active,07-6012836,Worker,12/26/09,Gus McGougan,34-5995389
+Caseflow,AFT,Willabella Gajewski,Active,07-9398141,Worker,2/17/05,Frederick Coxall,14-4342205
+Caseflow,AFT,../../../../../../../../../../../etc/passwd%00,Active,08-0640260,Worker,5/2/13,Gus McGougan,34-5995389
+Caseflow,AFT,Sibelle Ryrie,Active,10-7985102,Worker,6/18/08,Frederick Coxall,14-4342205
+Caseflow,AFT,Mallorie Prawle,Active,11-5468553,Worker,6/8/12,Frederick Coxall,14-4342205
+Caseflow,AFT,Jade Linnell,Active,12-4033309,Worker,6/25/11,Frederick Coxall,14-4342205
+Caseflow,AFT,Paulina Codman,Active,14-0338055,Worker,5/23/09,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Calhoun Sisson,Active,39-5372643,Worker,6/24/06,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Clim Patillo,Active,41-7511878,Worker,6/18/12,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Cynthie Aksell,Active,43-1360412,Worker,5/6/07,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Sharleen Opdenort,Active,47-2085487,Worker,5/28/07,Frederick Coxall,14-4342205
+Caseflow,AFT,Danette Arndt,Active,47-5972227,Worker,6/16/06,Gus McGougan,34-5995389
+Caseflow,AFT,Sigfrid Shinn,Active,48-6410059,Worker,3/20/15,Gus McGougan,34-5995389
+Caseflow,AFT,Worth Pybworth,Active,59-3574175,Worker,12/25/05,Frederick Coxall,14-4342205
+Caseflow,AFT,Robbi Gonnard,Active,63-9818832,Worker,1/23/07,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Marinna Cosin,Active,64-8436898,Worker,4/24/12,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Yoko Kiossel,Active,65-5134611,Worker,12/9/11,Gus McGougan,34-5995389
+Caseflow,AFT,Midge Orpin,Active,73-0227227,Worker,6/1/06,Gus McGougan,34-5995389
+Caseflow,AFT,Hedwig Lodewick,Active,1;DROP TABLE users,Worker,9/13/14,Gus McGougan,34-5995389
+Caseflow,AFT,Piotr Rycraft,Active,75-6703283,Worker,10/20/14,Gus McGougan,34-5995389
+Caseflow,AFT,Marie-ann Bale,Active,76-4850480,Worker,3/5/09,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Sela Steinham,Active,76-8070267,Worker,6/19/10,Gus McGougan,34-5995389
+Caseflow,AFT,Rees Lober,Active,77-3817715,Worker,10/26/15,Gus McGougan,34-5995389
+Caseflow,AFT,Iolande Cayser,Active,80-7544792,Worker,11/6/11,Frederick Coxall,14-4342205
+Caseflow,AFT,Katti Eilhertsen,Active,80-9659185,Worker,10/17/03,Frederick Coxall,14-4342205
+Caseflow,AFT,Nanine Nassau,Active,86-7408943,Worker,12/20/10,Gus McGougan,34-5995389
+Caseflow,AFT,Dallas Muff,Active,89-4779011,Worker,6/13/05,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Durward Birks,Active,93-3030401,Worker,6/17/10,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Liz Gaven,Active,96-8884805,Worker,4/1/15,Frederick Coxall,14-4342205
+Caseflow,EVM,Arline Stubbes,Active,69-0560246,Supervisor,10/2/05,Anthony Probate,13-6198886
+Caseflow,EVN,Doyle Ruit,Active,88-3595253,Supervisor,8/28/04,Anthony Probate,13-61988B6
+Caseflow,EVN,Robin Tarbin,Active,14-5274049,Worker,4/17/15,Doyle Ruit,88-3595253
+Caseflow,EVN,Rasia Kulas,Active,20-3006998,Worker,4/18/10,Doyle Ruit,88-3595253
+Caseflow,EVN,Thorndike Berrow,Active,23-2852530,Worker,4/11/03,Arline Stubbes,69-0560246
+Caseflow,EVN,Shelley Buckle,Active,30-7783310,Worker,7/16/04,Doyle Ruit,88-3595253
+Caseflow,EVN,Maighdiln Mournian,Active,33-9864260,Worker,10/17/02,Arline Stubbes,69-0560246
+Caseflow,EVN,Con Clemenzo,Active,34-7261417,Worker,1/13/12,Doyle Ruit,88-3595253
+Caseflow,EVN,Dita Andreas,Active,40-0248648,Worker,10/25/05,Doyle Ruit,88-3595253
+Caseflow,EVN,Alfons Tourner,Inactive,42-9930290,Worker,3/1/15,Arline Stubbes,69-0560246
+Caseflow,EVN,Byran Simison,Active,43-6505469,Worker,10/30/12,Doyle Ruit,88-3595253
+Caseflow,EVN,Kaylee Tawn,Active,44-0845791,Worker,5/19/09,Arline Stubbes,69-0560246
+Caseflow,EVN,Alisha Casoni,Active,46-2152300,Worker,10/29/09,Doyle Ruit,88-3595253
+Caseflow,EVN,Addia Leaning,Active,50-0760645,Worker,3/11/17,Doyle Ruit,88-3595253
+Caseflow,EVN,Reggie Mulryan,Active,54-4743558,Worker,12/29/16,Arline Stubbes,69-0560246
+Caseflow,EVN,Zorana McRoberts,Active,54-9873742,Worker,2/3/10,Doyle Ruit,88-3595253
+Caseflow,EVN,Ermanno Zamorrano,Active,56-9492756,Worker,5/26/09,Doyle Ruit,88-3595253
+Caseflow,EVN,Shaun Oventon,Active,60-2194276,Worker,3/24/05,Arline Stubbes,69-0560246
+Caseflow,EVN,Roseanna Kluger,Active,78-9978334,Worker,7/2/04,Doyle Ruit,88-3595253
+Caseflow,EVN,Allyson Lebang,Active,84-5298643,Worker,3/23/16,Arline Stubbes,69-0560246
+OperationsSupport,EVN,Binny Demaid,Active,30-6790569,Worker,3/7/11,Ermengarde Ivens,86-5474070
+Palletflow,DAY,Cobb Prattin,Active,38-6551956,Worker,26/11/2013,Anne-corinne Sprouls,31-8208353
+Shipping,EVN,Daniel Rooein,Active,10-6251425,Supervisor,7/4/05,Some Unknown,99-9999999
+
+0:05/06/2017 01:40:48 PM    Setting status of invalid data from fileDemographicExtract_2017-05-03.csv to Inactive
+0:05/06/2017 01:40:48 PM    Finished reading the file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:40:48 PM    Job Finished!
+
+
+0:05/06/2017 01:42:25 PM    Starting a new job!
+0:05/06/2017 01:42:25 PM    Starting to read file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:42:25 PM    Validating the file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:42:28 PM    Inserting valid data form DemographicExtract_2017-05-03.csv into the database
+0:05/06/2017 01:42:28 PM    75 Invalid Records found!
+
+-1.00E+02,DAY,Abeu Orgill,s,03-2515161,Manager,1/5/14,Matti Klich,28-3372512
+Caseflow,DAY,Cash Garland,Active,39-8817037,Supervisor,12/7/16,,28-3372512
+Caseflow,DAY,Jeffry Ives,Active,02-6598715,Worker,2/7/12,Abeu Orgill,03-2515161
+Caseflow,DAY,Gearard Savile,Active,18-1525908,Worker,1/2/15,Abeu Orgill,03-2515161
+Caseflow,DAY,Burr Ginnell,Active,21-9680801,Worker,4/5/05,Cash Garland,39-8817037
+Caseflow,DAY,Arnaldo Barnwall,Active,26-1040296,Worker,9/5/11,Cash Garland,39-8817037
+Caseflow,DAY,Kala Andrejevic,Active,28-0735962,Worker,7/8/08,Abeu Orgill,03-2515161
+Caseflow,DAY,Rip Cicerone,Active,35-6475497,Worker,6/11/03,Cash Garland,39-8817037
+Caseflow,DAY,Vicki Cluff,Active,35-7773906,Worker,2/8/13,Abeu Orgill,03-2515161
+Caseflow,DAY,Bartholomeo Drakeley,Active,37-9660253,Worker,8/18/06,Cash Garland,39-8817037
+Caseflow,DAY,Durand Aspray,Active,38-2929927,Worker,5/21/12,Cash Garland,39-8817037
+Caseflow,DAY,Livvie Itzcovich,Active,39-8759245,Worker,4/5/17,Cash Garland,39-8817037
+Caseflow,DAY,Maye Courtenay,Active,53-0257212,Worker,8/26/10,Abeu Orgill,03-2515161
+Caseflow,DAY,Broderick Gouldeby,Active,54-4599411,Worker,6/12/15,Abeu Orgill,03-2515161
+Caseflow,DAY,Alessandro Le Breton,Active,71-7147591,Worker,11/11/04,Cash Garland,39-8817037
+Caseflow,DAY,Nickola Flannery,Active,86-8826687,Worker,12/10/10,Abeu Orgill,03-2515161
+Caseflow,DAY,Thomasine Depport,Active,89-4182296,Worker,8/29/16,Abeu Orgill,03-2515161
+Caseflow,DAY,Ellary Baldi,Active,98-0265113,Worker,10/13/08,Cash Garland,39-8817037
+Caseflow,AFT,Carleton Ilden,Active,<img src=x onerror=alert('hi') />,,11/28/02, test ,
+Caseflow,AFT,Frederick Coxall,Active,14-4342205,Supervisor,1/9/06,Carleton Ilden,17-9867095
+Caseflow,AFT,Gus McGougan,Active,34-5995389,Supervisor,3/14/11,Carleton Ilden,17-9867095
+Caseflow,AFT,Rosanne Anfossi,Active,75-5694764,Supervisor,2/29/08,Carleton Ilden,17-9867095
+Caseflow,AFT,Shep Devonside,Active,02-0287856,Worker,8/29/08,Gus McGougan,34-5995389
+Caseflow,AFT,Kippie Astbury,Active,07-6012836,Worker,12/26/09,Gus McGougan,34-5995389
+Caseflow,AFT,Willabella Gajewski,Active,07-9398141,Worker,2/17/05,Frederick Coxall,14-4342205
+Caseflow,AFT,../../../../../../../../../../../etc/passwd%00,Active,08-0640260,Worker,5/2/13,Gus McGougan,34-5995389
+Caseflow,AFT,Sibelle Ryrie,Active,10-7985102,Worker,6/18/08,Frederick Coxall,14-4342205
+Caseflow,AFT,Mallorie Prawle,Active,11-5468553,Worker,6/8/12,Frederick Coxall,14-4342205
+Caseflow,AFT,Jade Linnell,Active,12-4033309,Worker,6/25/11,Frederick Coxall,14-4342205
+Caseflow,AFT,Paulina Codman,Active,14-0338055,Worker,5/23/09,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Calhoun Sisson,Active,39-5372643,Worker,6/24/06,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Clim Patillo,Active,41-7511878,Worker,6/18/12,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Cynthie Aksell,Active,43-1360412,Worker,5/6/07,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Sharleen Opdenort,Active,47-2085487,Worker,5/28/07,Frederick Coxall,14-4342205
+Caseflow,AFT,Danette Arndt,Active,47-5972227,Worker,6/16/06,Gus McGougan,34-5995389
+Caseflow,AFT,Sigfrid Shinn,Active,48-6410059,Worker,3/20/15,Gus McGougan,34-5995389
+Caseflow,AFT,Worth Pybworth,Active,59-3574175,Worker,12/25/05,Frederick Coxall,14-4342205
+Caseflow,AFT,Robbi Gonnard,Active,63-9818832,Worker,1/23/07,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Marinna Cosin,Active,64-8436898,Worker,4/24/12,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Yoko Kiossel,Active,65-5134611,Worker,12/9/11,Gus McGougan,34-5995389
+Caseflow,AFT,Midge Orpin,Active,73-0227227,Worker,6/1/06,Gus McGougan,34-5995389
+Caseflow,AFT,Hedwig Lodewick,Active,1;DROP TABLE users,Worker,9/13/14,Gus McGougan,34-5995389
+Caseflow,AFT,Piotr Rycraft,Active,75-6703283,Worker,10/20/14,Gus McGougan,34-5995389
+Caseflow,AFT,Marie-ann Bale,Active,76-4850480,Worker,3/5/09,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Sela Steinham,Active,76-8070267,Worker,6/19/10,Gus McGougan,34-5995389
+Caseflow,AFT,Rees Lober,Active,77-3817715,Worker,10/26/15,Gus McGougan,34-5995389
+Caseflow,AFT,Iolande Cayser,Active,80-7544792,Worker,11/6/11,Frederick Coxall,14-4342205
+Caseflow,AFT,Katti Eilhertsen,Active,80-9659185,Worker,10/17/03,Frederick Coxall,14-4342205
+Caseflow,AFT,Nanine Nassau,Active,86-7408943,Worker,12/20/10,Gus McGougan,34-5995389
+Caseflow,AFT,Dallas Muff,Active,89-4779011,Worker,6/13/05,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Durward Birks,Active,93-3030401,Worker,6/17/10,Rosanne Anfossi,75-5694764
+Caseflow,AFT,Liz Gaven,Active,96-8884805,Worker,4/1/15,Frederick Coxall,14-4342205
+Caseflow,EVM,Arline Stubbes,Active,69-0560246,Supervisor,10/2/05,Anthony Probate,13-6198886
+Caseflow,EVN,Doyle Ruit,Active,88-3595253,Supervisor,8/28/04,Anthony Probate,13-61988B6
+Caseflow,EVN,Robin Tarbin,Active,14-5274049,Worker,4/17/15,Doyle Ruit,88-3595253
+Caseflow,EVN,Rasia Kulas,Active,20-3006998,Worker,4/18/10,Doyle Ruit,88-3595253
+Caseflow,EVN,Thorndike Berrow,Active,23-2852530,Worker,4/11/03,Arline Stubbes,69-0560246
+Caseflow,EVN,Shelley Buckle,Active,30-7783310,Worker,7/16/04,Doyle Ruit,88-3595253
+Caseflow,EVN,Maighdiln Mournian,Active,33-9864260,Worker,10/17/02,Arline Stubbes,69-0560246
+Caseflow,EVN,Con Clemenzo,Active,34-7261417,Worker,1/13/12,Doyle Ruit,88-3595253
+Caseflow,EVN,Dita Andreas,Active,40-0248648,Worker,10/25/05,Doyle Ruit,88-3595253
+Caseflow,EVN,Alfons Tourner,Inactive,42-9930290,Worker,3/1/15,Arline Stubbes,69-0560246
+Caseflow,EVN,Byran Simison,Active,43-6505469,Worker,10/30/12,Doyle Ruit,88-3595253
+Caseflow,EVN,Kaylee Tawn,Active,44-0845791,Worker,5/19/09,Arline Stubbes,69-0560246
+Caseflow,EVN,Alisha Casoni,Active,46-2152300,Worker,10/29/09,Doyle Ruit,88-3595253
+Caseflow,EVN,Addia Leaning,Active,50-0760645,Worker,3/11/17,Doyle Ruit,88-3595253
+Caseflow,EVN,Reggie Mulryan,Active,54-4743558,Worker,12/29/16,Arline Stubbes,69-0560246
+Caseflow,EVN,Zorana McRoberts,Active,54-9873742,Worker,2/3/10,Doyle Ruit,88-3595253
+Caseflow,EVN,Ermanno Zamorrano,Active,56-9492756,Worker,5/26/09,Doyle Ruit,88-3595253
+Caseflow,EVN,Shaun Oventon,Active,60-2194276,Worker,3/24/05,Arline Stubbes,69-0560246
+Caseflow,EVN,Roseanna Kluger,Active,78-9978334,Worker,7/2/04,Doyle Ruit,88-3595253
+Caseflow,EVN,Allyson Lebang,Active,84-5298643,Worker,3/23/16,Arline Stubbes,69-0560246
+OperationsSupport,EVN,Binny Demaid,Active,30-6790569,Worker,3/7/11,Ermengarde Ivens,86-5474070
+Palletflow,DAY,Cobb Prattin,Active,38-6551956,Worker,26/11/2013,Anne-corinne Sprouls,31-8208353
+Shipping,EVN,Daniel Rooein,Active,10-6251425,Supervisor,7/4/05,Some Unknown,99-9999999
+
+0:05/06/2017 01:42:28 PM    Setting the status of inactive employees from the fileDemographicExtract_2017-05-03.csv
+0:05/06/2017 01:42:28 PM    Finished reading the file: DemographicExtract_2017-05-03.csv
+0:05/06/2017 01:42:28 PM    Job Finished!
+
+
